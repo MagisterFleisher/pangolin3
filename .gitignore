@@ -1,0 +1,6 @@
+*.csv
+*.tsv
+*.dat
+*.o
+*.gch
+test/*
