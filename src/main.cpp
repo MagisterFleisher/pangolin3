@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
     std::unique_ptr<Graph>      graph           (new Graph (Read_CSV(file_name, skip_lines, base_read)));
     std::cout << "Graph edges: " << graph->edges.size() << "\n";
     std::cout << "Graph nodes: " << graph->nodes.size() << "\n";
-    std::string                 write_file_name ("rewritten_ctsi");
+    std::string                 write_file_name (file_name);
     auto                        er              (WriteGraph_CSV(graph, write_file_name, base_write));
     std::cout << std::endl;
     return 0; }

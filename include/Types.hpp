@@ -1,9 +1,6 @@
 #ifndef PANGOLIN_TYPES_HPP
 #define PANGOLIN_TYPES_HPP
-
-#include <cinttypes>
 #include <memory>
-#include <set>
 #include <string> 
 #include <unordered_map>
 #include <vector>
@@ -18,10 +15,6 @@ extern ID ToID(std::string strID) { return ID(std::stoi(strID.c_str(), nullptr, 
 typedef struct { ID id; } Node;
 // template<Typename Id> using struct Node { ID<Id> id; };
 
-// template<Typename Id> using struct Nodelist { std::vector<Id> nodes; };
-// typedef std::vector<ID> Nodelist;
-using Nodelist = std::vector<ID>;
-
 // template<Typename Id> using struct Edge { ID<id> id; ID<id> from; ID<id> to; }
 typedef struct {
     ID id;
@@ -29,8 +22,14 @@ typedef struct {
     ID to;
 } Edge;
 
-using Edgelist = std::vector<Edge>;
+// template<Typename Id> using struct Nodelist { std::vector<Id> nodes; };
+// typedef std::vector<ID> Nodelist;
+// using Nodelist = std::vector<ID>;
+using Nodelist = std::vector<std::shared_ptr<ID>>;
+
+// using Edgelist = std::vector<Edge>;
 // typedef std::vector<Edge> Edgelist;
+using Edgelist = std::vector<std::shared_ptr<Edge>>;
 
 // using struct Graph {Edgelist edges; Nodelist nodes;}
 typedef struct {

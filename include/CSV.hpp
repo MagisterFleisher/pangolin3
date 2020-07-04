@@ -39,8 +39,8 @@ Edge ParseLine(const std::string& line, const std::uint8_t base) {
     return edge; }
 
 Graph Read_CSV(const std::string& file_name, const int& skip_lines, const std::uint8_t base) { std::cout << "Called Read_CSV" << "\n";
-    const auto&         path            ("/home/aaron/Documents/cpp/net5/data/");
-    const auto&         csv_ext         (".csv");
+    const auto&         path            ("/home/aaron/Documents/cpp/pangolin3/data/");
+    const auto&         csv_ext         ("_edges.csv");
     const auto&         full_name       ((path + file_name) + csv_ext);
     std::ifstream       csv             (full_name);
     Graph               graph;
@@ -53,7 +53,9 @@ Graph Read_CSV(const std::string& file_name, const int& skip_lines, const std::u
         exit(1); } /* Check if file can open.  Exit with error if not.  */
     if(skip_lines > 0) {
         for(int i = 0; i < skip_lines; i++) { csv.ignore(10,'\n'); } } /* When specified, Ignore the first n lines of the CSV file. */
-    while(std::getline(csv, line)) { graph.edges.emplace_back(ParseLine(line, base)); }
+    while(std::getline(csv, line)) { 
+        std::shared_ptr<Edge> edge (new Edge (ParseLine(line, base)));
+        graph.edges.emplace_back(edge); }
     graph.nodes = NodelistGen(graph.edges);
     return graph; }
 
@@ -73,15 +75,15 @@ std::optional<std::string> WriteGraph_CSV(std::unique_ptr<Graph>& g, std::string
     switch(base) {
         case 8:{
             for(const auto& edge : g->edges ) { 
-                edges_stream_buffer << std::oct << edge.id << "," << std::oct << edge.from << "," << std::oct << edge.to << "\n"; }
+                edges_stream_buffer << std::oct << edge->id << "," << std::oct << edge->from << "," << std::oct << edge->to << "\n"; }
             break; };
         case 10:{
             for(const auto& edge : g->edges ) { 
-                edges_stream_buffer << edge.id << "," << edge.from << "," << edge.to << "\n"; }
+                edges_stream_buffer << edge->id << "," << edge->from << "," << edge->to << "\n"; }
             break; };
         case 16:{
             for( const auto& edge : g->edges ) { 
-                edges_stream_buffer << std::hex << edge.id << "," << std::hex << edge.from << "," << std::hex << edge.to << "\n"; }
+                edges_stream_buffer << std::hex << edge->id << "," << std::hex << edge->from << "," << std::hex << edge->to << "\n"; }
             break; };
         default:{std::cerr << "Problem finding base to write csv.\n";
                 return "Problem finding base to write csv."; } }
