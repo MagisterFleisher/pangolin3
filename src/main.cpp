@@ -2,7 +2,6 @@
 #include <cassert>
 #include <string>
 #include <memory>
-#include "HeaderMain.hpp"
 #include "CSV.hpp"
 
 int main(int argc, char* argv[]) {

@@ -19,7 +19,7 @@
 #include <vector>
 #include "Types.hpp"
 #include "NodelistGen.hpp"
-#include "HeaderMain.hpp"
+#include "CheckFile.hpp"
 
 Edge ParseLine(const std::string& line, const std::uint8_t base) {
     Edge edge;
@@ -39,24 +39,28 @@ Edge ParseLine(const std::string& line, const std::uint8_t base) {
     return edge; }
 
 Graph Read_CSV(const std::string& file_name, const int& skip_lines, const std::uint8_t base) { std::cout << "Called Read_CSV" << "\n";
-    const auto&         path            ("/home/aaron/Documents/cpp/pangolin3/data/");
+    const auto&         path            ("/home/aaron/Documents/cpp/net3/data/");
     const auto&         csv_ext         ("_edges.csv");
     const auto&         full_name       ((path + file_name) + csv_ext);
     std::ifstream       csv             (full_name);
     Graph               graph;
     std::string         line;
     if(csv.fail()) { 
-        auto err ("Read_CSV: Error opening file ");
+        auto err ("\tRead_CSV: Error opening file ");
         auto err_name (full_name);
         auto err_message (err + err_name);
         std::cerr << err_message << "\n";
         exit(1); } /* Check if file can open.  Exit with error if not.  */
+    std::cout << "\tRead_CSV: File successfully opened\n\tSkipping "  << skip_lines << " lines\n";
     if(skip_lines > 0) {
         for(int i = 0; i < skip_lines; i++) { csv.ignore(10,'\n'); } } /* When specified, Ignore the first n lines of the CSV file. */
+    std::cout << "\tRead_CSV: Begin reading file\n";
     while(std::getline(csv, line)) { 
-        std::shared_ptr<Edge> edge (new Edge (ParseLine(line, base)));
-        graph.edges.emplace_back(edge); }
+        graph.edges.emplace_back(new Edge (ParseLine(line, base))); }
+    std::cout << "\tRead_CSV: File successfully read\n\tCalling NodelistGen: Generating node list\n";
     graph.nodes = NodelistGen(graph.edges);
+    std::cout << "\tNodelist size: " << graph.nodes.size() << "\n";
+    std::cout << "\tRead_CSV: Node list successfully generated\nReturning graph\n";
     return graph; }
 
 std::optional<std::string> WriteGraphStream_CSV(const std::string& file_buffer, const std::string& file_name) { std::cout << "\tCalled WriteGraphStream_CSV\n";
