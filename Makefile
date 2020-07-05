@@ -1,4 +1,4 @@
-APP := 				pangolin0.1.0.17
+APP := 				pangolin0.2.0.17
 CXX := 				g++-10
 BUILDDIR +=			build/
 CXXFLAGS += 		$(CXXSTDFLAGS) $(CXXOPTFLAGS) $(CXXLIBFLAGS) $(CXXMACROFLAGS) $(CXXDEBUGFLAGS) $(LINKDIR)
