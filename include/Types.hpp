@@ -1,11 +1,10 @@
 #ifndef PANGOLIN_TYPES_HPP
 #define PANGOLIN_TYPES_HPP
-#include <memory>
+#pragma  GCC optimize("Ofast")
 #include <string>
 #include <vector>
 using ID            = std::uint64_t;
-extern ID ToID(std::string strID) { return ID(std::stoi(strID.c_str(), nullptr, 10));}
-// typedef struct {  ID id; } Node;
+ID ToID(std::string strID) { return ID(std::stoi(strID.c_str(), nullptr, 10));}
 using Node          = ID;
 using Nodelist      = std::vector<Node>;
 typedef struct { 

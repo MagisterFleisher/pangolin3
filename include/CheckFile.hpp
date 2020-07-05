@@ -1,6 +1,6 @@
 #ifndef PANGOLIN_HEADERMAIN_HPP
 #define PANGOLIN_HEADERMAIN_HPP
-
+#pragma  GCC optimize("Ofast")
 #include <algorithm>
 #include <filesystem>
 #include <iostream>
