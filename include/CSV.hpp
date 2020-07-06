@@ -1,6 +1,6 @@
 #ifndef PANGOLIN_CSV_HPP
 #define PANGOLIN_CSV_HPP
-#pragma  GCC optimize("Ofast")
+// #pragma  GCC optimize("Ofast")
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -22,7 +22,7 @@ Edge ParseLine(const std::string& line, const std::uint8_t& base) {
         default:    { std::cerr << "Problem reading base of csv.\n"; break; } }
     return edge; }
 
-Graph Read_CSV(const std::string& file_name, const int& skip_lines, const std::uint8_t base) { std::cout << "Called Read_CSV" << "\n";
+Graph ReadGraph_CSV(const std::string& file_name, const int& skip_lines, const std::uint8_t base) { std::cout << "Called Read_CSV" << "\n";
     const auto          path            ("/home/aaron/Documents/cpp/pangolin3/data/");
     const auto          csv_ext         ("_edges.csv");
     const auto          full_name       ((path + file_name) + csv_ext);

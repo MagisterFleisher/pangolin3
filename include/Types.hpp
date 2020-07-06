@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 using ID            = std::uint64_t;
-ID ToID(std::string strID) { return ID(std::stoi(strID.c_str(), nullptr, 10));}
+ID ToID(std::string strID) { return ID(std::stoul(strID.c_str(), nullptr, 10));}
 using Node          = ID;
 using Nodelist      = std::vector<Node>;
 typedef struct { 
