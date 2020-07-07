@@ -6,7 +6,9 @@
 #include "CSV.hpp"
 #include "Degree.hpp"
 #include "AlterHash.hpp"
+#include "CliqueFind.hpp"
 #include "TriadGen.hpp"
+#include "PresigeSimple.hpp"
 
 int main(int argc, char* argv[]) {
     const std::string           file_name       (argv[1]);
@@ -19,20 +21,24 @@ int main(int argc, char* argv[]) {
     std::string                 write_file_name (file_name);
     // const auto                  er              (WriteGraph_CSV(graph, write_file_name, base_write));
     std::cout << "Calling Simple degree \n";
-    const std::unordered_map    simple_degree   (SimpleDegree(  graph));
-    std::cout << "Calling out degree \n";
-    const std::unordered_map    out_degree      (OutDegree(     graph));
+    const std::unordered_map<Node, std::uint64_t>   simple_degree       (SimpleDegree(  graph));
+    /*std::cout << "Calling out degree \n";
+    const std::unordered_map<Node, std::uint64_t>   out_degree          (OutDegree(     graph));
     std::cout << "Calling in degree \n";
-    const std::unordered_map    in_degree       (InDegree(      graph));
+    const std::unordered_map<Node, std::uint64_t>   in_degree           (InDegree(      graph)); */
     std::cout << "Calling Alter hash \n";
-    const Alterhash             alter_hash      (AlterHash(     graph));
-    std::cout << "Calling triad set\n";
-    const auto&                 clique_set      (CliqueFind( alter_hash));
-    for(const auto& clique : clique_set) {
-        std::cout << "Clique: "
+    const Alterhash                                 alter_hash          (AlterHash(     graph));
+    std::cout << "Calling PrestigeSimple\n";
+    const std::unordered_map<Node, std::uint64_t>   prestige_simple     (PrestigeSimple(graph.nodes, alter_hash, simple_degree));
+    for(const auto& node : prestige_simple) {
+        std::cout << "Node: " << node.first << " Prestige: " << node.second << "\n"; }
+    /* std::cout << "Calling triad set\n";
+    const auto&                 clique_set      (CliqueFind( alter_hash)); */
+    /* for(const auto& clique : clique_set) {
+        std::cout << "Clique: ";
         for(const auto& node : clique) {
             std::cout << node << " "; }
-        std::cout << "\n"; }
+        std::cout << "\n"; } */
     /* std::cout << "Calling triad set\n";
     const auto&                 triad_set       (TriadGen( alter_hash)); */
     return 0; }

@@ -1,5 +1,5 @@
-#ifndef PANGOLIN_TRIADGEN_HPP
-#define PANGOLIN_TRIADGEN_HPP
+#ifndef PANGOLIN_CLIQUEFIND_HPP
+#define PANGOLIN_CLIQUEFIND_HPP
 #pragma GCC optimize("Ofast")
 #include <iostream>
 #include <memory>
@@ -10,14 +10,14 @@
 #include "Types.hpp"
 #include "Degree.hpp"
 /*
- * TRIAD GEN ALGORITHM
+ * Clique GEN ALGORITHM
  * get alter hash
  * for each node
  *   get node
  *   get alters
  *   for each alter
- *     does node and alter share an alter?
- *       create triads for each alter (node, alter, shared alter) 
+ *     does node and alter share at least one alter?
+ *       A triad is a minimal clique.
  */
 std::set<std::set<Node>> CliqueFind(Alterhash alter_hash) {
     std::set<std::set<Node>>        clique_set;
@@ -40,7 +40,7 @@ std::set<std::set<Node>> CliqueFind(Alterhash alter_hash) {
                 std::set<Node>  clique           (cRANGE(intersect));
                 clique.emplace(node);
                 clique.emplace(alter);
-                triad_set.emplace(triad); 
+                clique_set.emplace(clique); 
             }}} });} });
-    return triad_set; }
-#endif // PANGOLIN_TRIADGEN_HPP
+    return clique_set; }
+#endif // PANGOLIN_CLIQUEFIND_HPP

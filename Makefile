@@ -11,8 +11,8 @@ CXXDEBUGFLAGS +=	-Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wca
 SRCDIR += 			src/
 INCLUDEDIR += 		include/
 LINKDIR += 			-L/usr/include/ -Iinclude/ -L/usr/include/c++/10/
-ALLFILES +=			$(SRCDIR)main.cpp $(INCLUDEDIR)CheckFile.hpp 	$(INCLUDEDIR)Types.hpp 	$(INCLUDEDIR)CSV.hpp 	$(INCLUDEDIR)NodelistGen.hpp	$(INCLUDEDIR)AlterHash.hpp	$(INCLUDEDIR)Degree.hpp	$(INCLUDEDIR)TriadGen.hpp
-ALLFILESO +=		$(BUILDDIR)main.o $(BUILDDIR)CheckFile.o 		$(BUILDDIR)Types.o 		$(BUILDDIR)CSV.o 		$(BUILDDIR)NodelistGen.o		$(BUILDDIR)AlterHash.o		$(BUILDDIR)Degree.o		$(BUILDDIR)TriadGen.o
+ALLFILES +=			$(SRCDIR)main.cpp $(INCLUDEDIR)Types.hpp 	$(INCLUDEDIR)CheckFile.hpp	$(INCLUDEDIR)CSV.hpp 	$(INCLUDEDIR)NodelistGen.hpp	$(INCLUDEDIR)AlterHash.hpp	$(INCLUDEDIR)Degree.hpp	$(INCLUDEDIR)TriadGen.hpp	$(INCLUDEDIR)CliqueFind.hpp
+ALLFILESO +=		$(BUILDDIR)main.o $(BUILDDIR)Types.o 		$(BUILDDIR)CheckFile.o 		$(BUILDDIR)CSV.o 		$(BUILDDIR)NodelistGen.o		$(BUILDDIR)AlterHash.o		$(BUILDDIR)Degree.o		$(BUILDDIR)TriadGen.o		$(BUILDDIR)CliqueFind.o
 
 $(APP): $(ALLFILESO)
 	$(CXX) $(CXXFLAGS) $(BUILDDIR)main.o -o $(APP)
@@ -37,6 +37,9 @@ $(BUILDDIR)Degree.o: $(INCLUDEDIR)Degree.hpp $(INCLUDEDIR)Types.hpp
 
 $(BUILDDIR)AlterHash.o: $(INCLUDEDIR)AlterHash.hpp $(INCLUDEDIR)Types.hpp
 	$(CXX) $(CXXFLAGS) -c $(INCLUDEDIR)AlterHash.hpp -o $(BUILDDIR)AlterHash.o
+
+$(BUILDDIR)CliqueFind.o: $(INCLUDEDIR)CliqueFind.hpp $(INCLUDEDIR)Types.hpp
+	$(CXX) $(CXXFLAGS) -c $(INCLUDEDIR)CliqueFind.hpp -o $(BUILDDIR)CliqueFind.o
 
 $(BUILDDIR)TriadGen.o: $(INCLUDEDIR)TriadGen.hpp $(INCLUDEDIR)Types.hpp
 	$(CXX) $(CXXFLAGS) -c $(INCLUDEDIR)TriadGen.hpp -o $(BUILDDIR)TriadGen.o

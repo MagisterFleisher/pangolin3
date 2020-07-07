@@ -7,14 +7,12 @@
 #include <unordered_map>
 #include <vector>
 #include "Types.hpp"
-#define RANGE(x)  x.begin(),  x.end()
-#define cRANGE(x) x.cbegin(), x.cend()
 /*
  * @NAME: Freq
  * @PURPOSE: Count occurences of elements in a vector.  Return a map.
  */
-std::unordered_map<ID, std::uint64_t> Freq(const Nodelist& to_count) {
-    std::unordered_map<ID, std::uint64_t> freq_map;
+std::unordered_map<Node, std::uint64_t> Freq(const Nodelist& to_count) {
+    std::unordered_map<Node, std::uint64_t> freq_map;
     for(const auto& element : to_count) { freq_map[element] += 1; }
     return freq_map; }
 /*
@@ -43,7 +41,7 @@ std::vector<ID> AllNodes(const Edgelist& edges) {
     vectorA.insert(vectorA.end(), cRANGE(   vectorB));
     return vectorA; }
 
-std::unordered_map<ID, std::uint64_t> SimpleDegree( const Graph& g) { return Freq(AllNodes(g.edges)); }
-std::unordered_map<ID, std::uint64_t> OutDegree(    const Graph& g) { return Freq(OutNodes(g.edges)); }
-std::unordered_map<ID, std::uint64_t> InDegree(     const Graph& g) { return Freq(InNodes( g.edges)); }
+std::unordered_map<Node, std::uint64_t> SimpleDegree( const Graph& g) { return Freq(AllNodes(g.edges)); }
+std::unordered_map<Node, std::uint64_t> OutDegree(    const Graph& g) { return Freq(OutNodes(g.edges)); }
+std::unordered_map<Node, std::uint64_t> InDegree(     const Graph& g) { return Freq(InNodes( g.edges)); }
 #endif //PANGOLIN_DEGREECENTRALITY_HPP

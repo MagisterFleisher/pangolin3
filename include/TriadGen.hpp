@@ -1,45 +1,32 @@
 #ifndef PANGOLIN_TRIADGEN_HPP
 #define PANGOLIN_TRIADGEN_HPP
 #pragma GCC optimize("Ofast")
+#include <execution>
 #include <iostream>
 #include <memory>
-#include <vector>
 #include <set>
 #include <unordered_map>
-#include <execution>
-#include "Types.hpp"
+#include <vector>
+#include "CliqueFind.hpp"
 #include "Degree.hpp"
+#include "Types.hpp"
 /*
  * TRIAD GEN ALGORITHM
- * get alter hash
- * for each node
- *   get node
- *   get alters
- *   for each alter
- *     does node and alter share an alter?
- *       create triads for each alter (node, alter, shared alter) 
+ * find Cliques
+ *   Triads are minimal cliques and cliques divided into triples
  */
-std::set<std::set<Node>> TriadGen(Alterhash alter_hash) {
-    std::set<std::set<Node>>        triad_set;
-    std::for_each(std::execution::par, cRANGE(alter_hash), [&](const auto& node_alters){
-        const Node                  node            (node_alters.first  );
-        const auto&                 alter_set       (node_alters.second );
-        const auto&                 alter_set_size  (alter_set.size()   );
-        if(alter_set_size > 1) {
-            std::for_each(std::execution::par, cRANGE(alter_set), [&](const auto alter){
-            const std::set<Node>&   alts_alt        (alter_hash.at(alter)   );
-            const auto&             alts_alt_size   (alts_alt.size());
-            if(alts_alt_size > 1) {
-            if(alter != node) {
-            const auto&             result_size     ((alter_set_size > alts_alt_size) ? alts_alt_size : alter_set_size);
-            Nodelist                intersect       (result_size);
-            auto                    iterator        (std::set_intersection(cRANGE(alter_set), cRANGE(alts_alt), intersect.begin()));
-            intersect.resize(iterator - intersect.begin());
-            intersect.shrink_to_fit();
-            if(!intersect.empty()) {
-                std::sort(RANGE(intersect));
-                for(const auto& triad_node : intersect) {
-                    std::set<Node>  triad           ({node, alter, triad_node} );
-                    triad_set.emplace(triad);}}}}});}});
-    return triad_set; }
+std::set<std::set<Node>> TriadGen(Alterhash alter_hash) { }
 #endif // PANGOLIN_TRIADGEN_HPP
+
+    /*std::set<std::set<Node>>        triad_set;
+    const auto&                     clique_set  (CliqueFind(alter_hash));
+    const std::vector<std::set<Node>> cliques   (clique_set.begin(), clique_set.end());
+    for(const auto& clique : cliques) {
+        std::vector<Node>           vec_clique  (clique.begin(), clique.end());
+        Node                        node        (vec_clique.at(0));
+        Node                        alter       (vec_clique.at(1));
+        std::vector<Node>           triad_nodes (vec_clique.at(2), vec_clique.end());
+        for(const auto& node : triad_nodes) {
+            std::set<Node>          triad       {node, alter, triad_node};
+            triad_set.emplace(triad); }}
+    return triad_set; */
