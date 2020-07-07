@@ -1,8 +1,7 @@
 #ifndef PANGOLIN_NODELISTGEN_HPP
 #define PANGOLIN_NODELISTGEN_HPP
-//#pragma  GCC optimize("Ofast")
+#pragma  GCC optimize("Ofast")
 #include <algorithm>
-#include <execution>
 #include <iostream>
 #include <vector>
 #include "Types.hpp"

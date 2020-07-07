@@ -19,8 +19,8 @@
  *     does node and alter share an alter?
  *       create triads for each alter (node, alter, shared alter) 
  */
-std::set<std::set<Node>> TriadGen(Alterhash alter_hash) {
-    std::set<std::set<Node>>        triad_set;
+std::set<std::set<Node>> CliqueFind(Alterhash alter_hash) {
+    std::set<std::set<Node>>        clique_set;
     std::for_each(std::execution::par, cRANGE(alter_hash), [&](const auto& node_alters){
         const Node                  node            (node_alters.first  );
         const auto&                 alter_set       (node_alters.second );
@@ -37,9 +37,10 @@ std::set<std::set<Node>> TriadGen(Alterhash alter_hash) {
             intersect.resize(iterator - intersect.begin());
             intersect.shrink_to_fit();
             if(!intersect.empty()) {
-                std::sort(RANGE(intersect));
-                for(const auto& triad_node : intersect) {
-                    std::set<Node>  triad           ({node, alter, triad_node} );
-                    triad_set.emplace(triad);}}}}});}});
+                std::set<Node>  clique           (cRANGE(intersect));
+                clique.emplace(node);
+                clique.emplace(alter);
+                triad_set.emplace(triad); 
+            }}} });} });
     return triad_set; }
 #endif // PANGOLIN_TRIADGEN_HPP

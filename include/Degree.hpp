@@ -1,5 +1,5 @@
-#ifndef NET1_DEGREECENTRALITY_HPP
-#define NET1_DEGREECENTRALITY_HPP
+#ifndef PANGOLIN_DEGREECENTRALITY_HPP
+#define PANGOLIN_DEGREECENTRALITY_HPP
 #pragma GCC optimize("Ofast")  
 #include <algorithm>
 #include <future>
@@ -46,4 +46,4 @@ std::vector<ID> AllNodes(const Edgelist& edges) {
 std::unordered_map<ID, std::uint64_t> SimpleDegree( const Graph& g) { return Freq(AllNodes(g.edges)); }
 std::unordered_map<ID, std::uint64_t> OutDegree(    const Graph& g) { return Freq(OutNodes(g.edges)); }
 std::unordered_map<ID, std::uint64_t> InDegree(     const Graph& g) { return Freq(InNodes( g.edges)); }
-#endif //NET1_DEGREECENTRALITY_HPP
+#endif //PANGOLIN_DEGREECENTRALITY_HPP

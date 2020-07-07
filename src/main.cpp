@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include <set>
 #include "CSV.hpp"
 #include "Degree.hpp"
 #include "AlterHash.hpp"
@@ -17,16 +18,21 @@ int main(int argc, char* argv[]) {
         std::cout << "Graph edges: " << graph.edges.size() << "\n"; std::cout << "Graph nodes: " << graph.nodes.size() << "\n";
     std::string                 write_file_name (file_name);
     // const auto                  er              (WriteGraph_CSV(graph, write_file_name, base_write));
+    std::cout << "Calling Simple degree \n";
     const std::unordered_map    simple_degree   (SimpleDegree(  graph));
+    std::cout << "Calling out degree \n";
     const std::unordered_map    out_degree      (OutDegree(     graph));
+    std::cout << "Calling in degree \n";
     const std::unordered_map    in_degree       (InDegree(      graph));
+    std::cout << "Calling Alter hash \n";
     const Alterhash             alter_hash      (AlterHash(     graph));
-    const Alterhash             triad_hash      (TriadGen( alter_hash));
-    for(const auto& node : triad_hash) {
-        std::cout << "Node: " << node.first << " Triads:  ";
-        for(const auto& triad : node.second) {
-            std::cout << triad << " "; }
+    std::cout << "Calling triad set\n";
+    const auto&                 clique_set      (CliqueFind( alter_hash));
+    for(const auto& clique : clique_set) {
+        std::cout << "Clique: "
+        for(const auto& node : clique) {
+            std::cout << node << " "; }
         std::cout << "\n"; }
-    std::cout << std::endl;
-
+    /* std::cout << "Calling triad set\n";
+    const auto&                 triad_set       (TriadGen( alter_hash)); */
     return 0; }

@@ -1,5 +1,5 @@
-#ifndef NET1_ALTERMAP_HPP
-#define NET1_ALTERMAP_HPP
+#ifndef PANGOLIN_ALTERMAP_HPP
+#define PANGOLIN_ALTERMAP_HPP
 #pragma GCC optimize("Ofast")
 #include <iostream>
 #include <memory>
@@ -22,4 +22,4 @@ Alterhash AlterHash(const Graph& g) {
     for(const auto& node : nodes ) {
         alter_map[node] = FindAlters(node, g); }
     return alter_map; }
-#endif // NET1_ALTERMAP_HPP
+#endif // PANGOLIN_ALTERMAP_HPP
