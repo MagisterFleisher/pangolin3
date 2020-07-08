@@ -1,11 +1,11 @@
-#ifndef PANGOLIN_SIMPLEPRESTIGE_HPP
-#define PANGOLIN_SIMPLEPRESTIGE_HPP
+#ifndef PANGOLIN_PRESTIGESIMPLE_HPP
+#define PANGOLIN_PRESTIGESIMPLE_HPP
 #pragma GCC optimize("Ofast")  
 #include <algorithm>
-#include <future>
-#include <memory>
 #include <unordered_map>
 #include <vector>
+#include <iostream>
+#include <execution>
 #include "Types.hpp"
 /* 
 Simple Prestige: the sum of the degree of an actor's alters
@@ -18,10 +18,16 @@ Eigenvalue centrality: also prestige but more complicated
  * for each node,
  *    the node's prestige = sum of it's alters' degree centrality
  */
-Alterhash PrestigeSimple(Alterhash alterhash, Nodelist nodelist, std::unordered_map degree) {
-    std::unordered_map<Node, std::uint64_t>  prestige_map;
-    std::for_each(const auto& node : Nodelist) {
-        const auto&                     alters      (alterhash[node]);
-        freq_map[node] = std::accumulate(alters.begin(), alters.end(), 0); }
-    return freq_map; }
-#endif //PANGOLIN_SIMPLEPRESTIGE_HPP
+std::unordered_map<Node, std::uint64_t> PrestigeSimple(Alterhash alter_hash, std::unordered_map<Node, std::uint64_t> degree) {
+    std::cout << "\tCalled PrestigeSimple\n";
+    Centrality                  prestige_map    {};
+    std::for_each(cRANGE(alter_hash), [&](const auto& node_map){
+        const auto&             node            (node_map.first);
+        const auto&             alters          (node_map.second);
+        std::uint64_t           prestige        (0);
+        for(const auto& alter : alters) {
+            const auto&         alter_degree    (degree.at(alter));
+            prestige += alter_degree; }
+        prestige_map[node] = prestige; });
+    return prestige_map; }
+#endif //PANGOLIN_PRESTIGESIMPLE_HPP

@@ -10,7 +10,7 @@
 #define cRANGE(x)   x.cbegin(), x.cend()
 
 using ID            = std::uint64_t;
-ID ToID(std::string strID) { return ID(std::stoul(strID.c_str(), nullptr, 10));}
+// ID ToID(std::string strID) { return ID(std::stoul(strID.c_str(), nullptr, 10));}
 using Node          = ID;
 using Nodelist      = std::vector<Node>;
 typedef struct { 
@@ -22,4 +22,6 @@ typedef struct {
     Edgelist edges;
     Nodelist nodes; } Graph;
 using Alterhash     = std::unordered_map<Node, std::set<Node>>;
+using Centrality    = std::unordered_map<Node, std::uint64_t>;
+enum Direction { in, out, both };
 #endif//PANGOLIN_TYPES_HPP

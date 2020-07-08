@@ -1,6 +1,6 @@
 #ifndef PANGOLIN_CSV_HPP
 #define PANGOLIN_CSV_HPP
-// #pragma  GCC optimize("Ofast")
+#pragma  GCC optimize("Ofast")
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -43,7 +43,7 @@ Graph ReadGraph_CSV(const std::string& file_name, const int& skip_lines, const s
 
 std::optional<std::string> WriteGraph_EdgesCSV(const Graph& g, const std::string& file_name, const std::uint8_t base) { std::cout << "\tCalled WriteGraph_EdgesCSV\n"; 
 const std::string&                  file_edges_save     (("data/" + file_name) + "_edges.csv");
-    std::ofstream                   out_edges_CSVFile   ( file_edges_save, std::ios::out);
+    std::ofstream                   out_edges_CSVFile   ( file_edges_save, std::ios::out | std::ios::binary);
     if( out_edges_CSVFile.is_open()) {
         switch(base) {
         case 8:{ for(const auto& edge : g.edges ) { 
@@ -57,9 +57,9 @@ const std::string&                  file_edges_save     (("data/" + file_name) +
     } else { std::cerr << "\tWriteGraphStream_CSV: Error opening " << file_edges_save << "\n"; } 
     return std::nullopt; }
 
-std::optional<std::string> WriteGraph_NodesCSV(const Graph& g, const std::string& file_name, const std::uint8_t base) { std::cout << "\tCalled WriteGraph_NodesCSV\n"; 
+std::optional<std::string> WriteGraph_NodesCSV(const Graph& g, const std::string file_name, const std::uint8_t base) { std::cout << "\tCalled WriteGraph_NodesCSV\n"; 
     const std::string&                  file_nodes_save     (("data/" + file_name) + "_nodes.csv");
-    std::ofstream                       out_nodes_CSVFile   ( file_nodes_save, std::ios::out);
+    std::ofstream                       out_nodes_CSVFile   ( file_nodes_save, std::ios::out | std::ios::binary);
     if( out_nodes_CSVFile.is_open()) {
         switch(base) {
         case 8:  { for(auto& node : g.nodes ) { out_nodes_CSVFile << std::oct << node << "\n";} break; };
