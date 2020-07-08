@@ -24,17 +24,22 @@ int main(int argc, char* argv[]) {
 
     std::cout << "Calling Alter hash \n";
     const Alterhash&            alter_hash          (AlterHash(graph));
+    for(auto n : alter_hash) {
+        std::cout << "Node: " << n.first << " Alter count: " << n.second.size() << "\n"; }
+
     std::cout << "Calling PrestigeSimple_all\n";
     const auto&                                     prestige_simple_all (PrestigeSimple(alter_hash, simple_degree));
 
     std::cout << "Calling out degree \n";
     const Centrality            out_degree          (Degree(graph, out));
+
     std::cout << "Calling PrestigeSimple_out\n";
     const auto&                                     prestige_simple_out (PrestigeSimple(alter_hash, out_degree));
 
     std::cout << "Calling in degree \n";
     const Centrality            in_degree           (Degree(graph, in));
-    std::cout << "Calling PrestigeSimple_out\n";
+    
+    std::cout << "Calling PrestigeSimple_in\n";
     const auto&                                     prestige_simple_in  (PrestigeSimple(alter_hash, in_degree));
 
     return 0; }
