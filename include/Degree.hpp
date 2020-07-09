@@ -12,8 +12,8 @@
  * @NAME: Degree
  * @PURPOSE: Count occurences of elements in a vector.  Return a map.
  */
-Centrality Degree(const Graph& g, Direction direction) {
-    Centrality freq_map {};
+Attribute Degree(const Graph& g, Direction direction) {
+    Attribute freq_map {};
     for(const auto& node : g.nodes) { 
         freq_map[node] = 0; }
     switch(direction) {

@@ -7,7 +7,7 @@ CXXSTDFLAGS +=		-std=c++17
 CXXOPTFLAGS +=		-O3 -funroll-loops -flto -finline-functions -fdata-sections -ffunction-sections -fpermissive -ffast-math
 CXXLIBFLAGS +=		-lstdc++ -ltbb -pthread  -fopenmp -lpthread
 CXXMACROFLAGS +=	-D_GLIBCXX_PARALLEL
-CXXDEBUGFLAGS +=	-Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wduplicated-cond -Wduplicated-branches -Wuseless-cast -Wconversion # -Wsign-conversion -Wpedantic 
+CXXDEBUGFLAGS +=	-Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wduplicated-cond -Wduplicated-branches -Wuseless-cast -Wconversion -Wpessimizing-move -Wredundant-move # -Wsign-conversion -Wpedantic 
 SRCDIR += 			src/
 INCLUDEDIR += 		include/
 LINKDIR += 			-L/usr/include/ -Iinclude/ -L/usr/include/c++/10/

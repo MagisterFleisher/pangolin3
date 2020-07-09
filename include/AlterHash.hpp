@@ -2,24 +2,25 @@
 #define PANGOLIN_ALTERMAP_HPP
 #pragma GCC optimize("Ofast")
 #include <iostream>
-#include <memory>
-#include <set>
-#include <unordered_map>
+#include <map>
 #include "Types.hpp"
-std::set<ID> FindAlters(const ID& node, const Graph& g) {
-    std::set<ID>    alters;
-    for( const auto& edges : g.edges ) {
-        if( node == edges.from )  { alters.emplace(edges.to);   }
-        if( node == edges.to   )  { alters.emplace(edges.from); } }
-    return alters; }
+Altermap GenAllNodeAlter(const Graph& g) {
+    std::cout << "\tBegan GenNodeAlter\n";
+    Altermap altermap;
+    for(const auto& edge : g.edges) {
+        altermap.emplace(std::pair(edge.from, edge.to)); 
+        altermap.emplace(std::pair(edge.to  , edge.from)); } 
+    std::cout << "\tFinished Altermap\n";
+    return altermap; }
 
-Alterhash AlterHash(const Graph& g) {
-    Alterhash       alter_map;
-    std::set<Node>  nodes;
-    for(const auto& edge : g.edges ) {
-        nodes.emplace(edge.from);
-        nodes.emplace(edge.to);}
-    for(const auto& node : nodes ) {
-        alter_map[node] = FindAlters(node, g); }
-    return alter_map; }
+Altermap GenNodeAlter(const Graph& g, const Node& node) {
+    std::cout << "\tBegan GenNodeAlter\n";
+    Altermap altermap;
+    for(const auto& edge : g.edges) {
+        if(node == edge.from) {
+            altermap.emplace(std::pair(edge.from, edge.to  ));    }
+        if(node == edge.to) {
+            altermap.emplace(std::pair(edge.to  , edge.from));    }   } 
+    std::cout << "\tFinished Altermap\n"; 
+    return altermap; }
 #endif // PANGOLIN_ALTERMAP_HPP

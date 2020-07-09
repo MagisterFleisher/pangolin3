@@ -15,7 +15,7 @@
  * find Cliques
  *   Triads are minimal cliques and cliques divided into triples
  */
-std::set<std::set<Node>> TriadGen(Alterhash alter_hash) { 
+std::set<std::set<Node>> TriadGen(const Altermap& alter_map) { 
     std::set<std::set<Node>> blank;
     return blank;}
 #endif // PANGOLIN_TRIADGEN_HPP

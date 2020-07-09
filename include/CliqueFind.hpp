@@ -19,15 +19,15 @@
  *     does node and alter share at least one alter?
  *       A triad is a minimal clique.
  */
-std::set<std::set<Node>> CliqueFind(Alterhash alter_hash) {
+std::set<std::set<Node>> CliqueFind(const Altermap& alter_map) {
     std::set<std::set<Node>>        clique_set;
-    std::for_each(std::execution::par, cRANGE(alter_hash), [&](const auto& node_alters){
+/*
+    std::for_each(std::execution::par, cRANGE(alter_map), [&](const auto& alter_map){
         const Node                  node            (node_alters.first  );
         const auto&                 alter_set       (node_alters.second );
         const auto&                 alter_set_size  (alter_set.size()   );
         if(alter_set_size > 1) {
-            std::for_each(std::execution::par, cRANGE(alter_set), [&](const auto alter){
-            const std::set<Node>&   alts_alt        (alter_hash.at(alter)   );
+            const std::set<Node>&   alts_alt        (alter_map.at(alter)   );
             const auto&             alts_alt_size   (alts_alt.size());
             if(alts_alt_size > 1) {
             if(alter != node) {
@@ -37,10 +37,9 @@ std::set<std::set<Node>> CliqueFind(Alterhash alter_hash) {
             intersect.resize(iterator - intersect.begin());
             intersect.shrink_to_fit();
             if(!intersect.empty()) {
-                std::set<Node>  clique           (cRANGE(intersect));
+                std::set<Node> clique           (cRANGE(intersect));
                 clique.emplace(node);
                 clique.emplace(alter);
-                clique_set.emplace(clique); 
-            }}} });} });
+                clique_set.emplace(clique); }}} }}); */
     return clique_set; }
 #endif // PANGOLIN_CLIQUEFIND_HPP
