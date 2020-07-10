@@ -1,5 +1,6 @@
 #ifndef PANGOLIN_SHORTESTPATHS_HPP
 #define PANGOLIN_SHORTESTPATHS_HPP
+#include <folly/FBVector.h>
 /*
 from each node to every other node
 n! paths
@@ -15,8 +16,6 @@ does the pair have a shortest path: { set<Node> {N1, N2}, path_length}
 ---
 betweenness: for each node, sum of occurances in a shortest path set
 - should be parallelizable */
-
-
 /* 
  * Unweighted Shortest Path Between Two Nodes
  * 
@@ -30,24 +29,52 @@ betweenness: for each node, sum of occurances in a shortest path set
  * Repeat 
  * When shortest paths from each node meet, there is the shortest path
  */
-std::vector<Edgelist> ShortestPaths(const Graph& graph, const Node& start, const Node& end) {
-    Alterhash alterhash;     /* When alter hash already generated */
-    Nodelist start_alters   (alterhash[start]);
-    Nodelist end_alters     (alterhash[start]);
-    /* Perhaps add GenAlters(...) if alter hash does not exist */
-    
-    /* Proceed by find node in other node's alters */
-    std::for_each(cRANGE(start_alters), [&end_alters](const auto& start_alter){ });
-    /* Proceed by finding intersection of alters - Better conceptually */
+folly::fbvector<Path> ShortestPaths(const Graph& graph, const Node& start, const Node& end) {
+    Path toward;
+    folly::fbvector<ID> id_path;
+    for(const auto graph : g.edges) {  }
+    return adjacencylist; }
+
+//////////////////////////////////////////////////////////
+
+using Element = std::variant<A, B, C>;
+struct Eq {
+    template <typename T>
+    bool operator()(T const& lhs, T const& rhs) const {
+        return equalNode(lhs, rhs); }
+    template <typename T, typename U>
+    bool operator()(T const&, U const&) const {
+        return false; } };
+bool equalTree(Element const& lhs, Element const& rhs) {
+    return std::visit(Eq{}, lhs, rhs); }
+
+//////////////////////////////////////////////////////////
+
+struct Tree {
+    ID edge_id;
+    Node from;
+    Node to;
+    Path& root;
+    std::vector<Tree>& branches; }
+
+Path ShortestPath(Graph graph, Node start, Node finish, Altermap altermap) {
+}
+
+Path ShortestPath(Graph graph, Node start, Node finish) {
+    Tree start_tree ({.from = start });
+    Tree end_tree ({.from = finish });
+    /* INIT */
     do {
-        const auto&             result_size     ((alter_set_size > alts_alt_size) ? alts_alt_size : alter_set_size);
-        Nodelist                intersect       (result_size);
-        auto                    iterator        (std::set_intersection(cRANGE(alter_set), cRANGE(alts_alt), intersect.begin()));
-        intersect.resize(iterator - intersect.begin());
-        intersect.shrink_to_fit();
-    } while (intersect.empty());
-    if(!intersect.empty()) { }
-    return adjacencylist;
+        for(const auto& edge : graph.edges) {
+            if(start_tree.from == edge.from) {
+                start_tree.edge_id = edge.id;
+                start_tree.to = edge.to;
+                start_tree.root {.id = edge.id, }
+            }
+        }
+        start_tree.id 
+        GenAlters(graph, )
+    } while ( );
 }
 
 

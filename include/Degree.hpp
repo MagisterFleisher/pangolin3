@@ -2,11 +2,8 @@
 #define PANGOLIN_DEGREECENTRALITY_HPP
 #pragma GCC optimize("Ofast")  
 #include <algorithm>
-#include <future>
 #include <iostream>
-#include <memory>
 #include <unordered_map>
-#include <vector>
 #include "Types.hpp"
 /*
  * @NAME: Degree
