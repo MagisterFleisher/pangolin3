@@ -3,7 +3,6 @@
 #pragma  GCC optimize("Ofast")
 #include <algorithm>
 #include <iostream>
-#include <vector>
 #include "Types.hpp"
 
 Nodelist SquishNodelist(Nodelist& nodes) {                     std::cout << "\tCalled SquishNodelist\n";

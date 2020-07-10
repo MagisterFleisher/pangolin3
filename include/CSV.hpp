@@ -8,7 +8,6 @@
 #include <optional>
 #include <sstream>
 #include <string>
-#include <vector>
 #include "Types.hpp"
 #include "NodelistGen.hpp"
 #include "CheckFile.hpp"

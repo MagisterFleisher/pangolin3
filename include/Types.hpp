@@ -6,24 +6,27 @@
 #include <set>
 #include <map>
 #include <unordered_map>
+#include <folly/FBVector.h>
 
 #define RANGE(x)    x.begin(),  x.end()
 #define cRANGE(x)   x.cbegin(), x.cend()
 
-using ID            = std::uint_fast32_t;
+using ID            = std::uint_fast64_t;
 using Node          = ID;
-using Nodelist      = std::vector<Node>;
-typedef struct { 
+using Nodelist      = folly::fbvector<Node>;
+// using Nodelist      = std::vector<Node>;
+typedef struct {
     ID id; 
     Node from;
     Node to;        } Edge;
-using Edgelist      = std::vector<Edge>;
+using Edgelist      = folly::fbvector<Edge>;
+// using Edgelist      = std::vector<Edge>;
 typedef struct {
     Edgelist edges;
     Nodelist nodes; } Graph;
 using Adjacencylist = std::map<Node, Nodelist>;
 using Altermap      = std::unordered_multimap<Node, Node>;
-// using Altermap      = std::map<Node, Nodelist>;
+//using Altermap      = std::map<Node, Nodelist>;
 using Attribute     = std::unordered_map<Node, std::uint64_t>;
 enum Direction { in, out, both };
 #endif//PANGOLIN_TYPES_HPP
