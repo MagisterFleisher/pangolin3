@@ -50,31 +50,39 @@ bool equalTree(Element const& lhs, Element const& rhs) {
 
 //////////////////////////////////////////////////////////
 
-struct Tree {
-    ID edge_id;
-    Node from;
-    Node to;
-    Path& root;
-    std::vector<Tree>& branches; }
+struct Branch {
+    std::vector<ID> ids;
+    Node node;
+    Node alter;
+    Path root; }
 
 Path ShortestPath(Graph graph, Node start, Node finish, Altermap altermap) {
 }
 
+std::vector<Branch> AddBranches(Graph graph, Node node) {
+    std::vector<Branch> branches
+    for(const auto& edge : graph.edges) {
+    if(edge.from == start || edge.to == start) {
+        if(edge.from == node) {
+            Branch branch {.ids = branch.ids.emplace_back(edge.id), .node = node, .alter = edge.to, .root = root.emplace_back(edge) };
+            branches.emplace_back(branch);
+        } else {
+            Branch branch {.ids = branch.ids.emplace_back(edge.id), .node = edge.from, .alter = node, .root = root.emplace_back(edge) };
+            branches.emplace_back(branch); } }  }
+    return branches; }
+
 Path ShortestPath(Graph graph, Node start, Node finish) {
-    Tree start_tree ({.from = start });
-    Tree end_tree ({.from = finish });
+    std::vector<std::vector<Branch>> start_paths;
+    std::vector<std::vector<Branch>> end_paths;
     /* INIT */
+    start_paths.emplace_back(AddBranches(graph, start));
+    end_paths.emplace_back(AddBranches(graph, finish));
+    for(const auto& branch : start_paths) {
+        if(branch)
+    }
     do {
-        for(const auto& edge : graph.edges) {
-            if(start_tree.from == edge.from) {
-                start_tree.edge_id = edge.id;
-                start_tree.to = edge.to;
-                start_tree.root {.id = edge.id, }
-            }
-        }
-        start_tree.id 
-        GenAlters(graph, )
-    } while ( );
+
+    } while ( shortest_path == false );
 }
 
 
