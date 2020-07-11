@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
 
     std::cout << "Calling Alter hash \n";
     if(!(graph.graph_size == giant)) {
-    const Altermap              altermap            (GenAllNodeAlter(graph));
+    const Altermap              altermap            (GenAllAlters(graph));
 
     std::cout << "Calling PrestigeSimple_all\n";
     const auto&               prestige_simple_all   (PrestigeSimple(altermap, simple_degree));

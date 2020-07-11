@@ -45,7 +45,7 @@ Graph ReadGraph_CSV(const std::string& file_name, const int& skip_lines, const s
         case 0: {                       std::cerr << "ReadGraph_CSV: No edges.  That's a problem."; exit(1);};
         case 1 ... 500 : {              graph.graph_size = tiny; break; };
         case 501 ... 100'000 : {        graph.graph_size = small; break; };
-        case 100'001 ... 30'000'000 : { graph.graph_size = large; break; };
+        case 100'001 ... 30'000'000 : { graph.graph_size = big; break; };
         default : {                     graph.graph_size = giant; break;}; }
     return graph; }
 
