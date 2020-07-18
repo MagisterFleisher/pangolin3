@@ -18,6 +18,7 @@ Eigenvalue centrality: also prestige but more complicated
  * for each node,
  *    the node's prestige = sum of it's alters' degree centrality
  */
+ /* 
 Attribute PrestigeSimple(Altermap alters_map, Attribute degree) {
     std::cout << "\tCalled PrestigeSimple\n";
     Attribute                   prestige_map    {};
@@ -26,5 +27,5 @@ Attribute PrestigeSimple(Altermap alters_map, Attribute degree) {
         const auto&             alter           (alter_map.second);
         const auto&             alter_degree    (degree.at(alter));
         prestige_map[node] += alter_degree; }
-    return prestige_map; }
+    return prestige_map; } */
 #endif //PANGOLIN_PRESTIGESIMPLE_HPP

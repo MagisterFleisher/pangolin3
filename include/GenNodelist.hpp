@@ -5,7 +5,7 @@
 #include <iostream>
 #include "Types.hpp"
 
-Nodelist SquishNodelist(Nodelist& nodes) {                     std::cout << "\tCalled SquishNodelist\n";
+Nodelist SquishNodelist(Nodelist& nodes) { //                     std::cout << "\tCalled SquishNodelist\n";
     std::sort(RANGE(nodes));                      // std::execution::par_unseq, 
     auto unique_nodes_iterator = std::unique(RANGE(nodes));
     nodes.erase(unique_nodes_iterator, nodes.end());

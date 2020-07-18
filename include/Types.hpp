@@ -24,10 +24,10 @@ typedef struct {
     Node to;        } Edge;
 using Edgelist      = folly::fbvector<Edge>;
 // using Edgelist      = std::vector<Edge>;
-using Altermap      = std::unordered_multimap<Node, Node>; /* In lieu of an adjacency list*/
+using Altermap      = std::map<Node, Nodelist>; /* In lieu of an adjacency list*/
 using Path          = folly::fbvector<Edge>;
 // using Path          = std::vector<Edge>;
-//using Altermap      = std::map<Node, Nodelist>;
+// using Altermap      = std::map<Node, Nodelist>;
 using Attribute     = std::unordered_map<Node, std::uint64_t>;
 
 typedef struct {

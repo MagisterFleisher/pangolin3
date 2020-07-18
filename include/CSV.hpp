@@ -9,7 +9,7 @@
 #include <sstream>
 #include <string>
 #include "Types.hpp"
-#include "NodelistGen.hpp"
+#include "GenNodelist.hpp"
 #include "CheckFile.hpp"
 
 Edge ParseLine(const std::string& line, const std::uint8_t& base) {
@@ -43,10 +43,10 @@ Graph ReadGraph_CSV(const std::string& file_name, const int& skip_lines, const s
                                                                                             std::cout << "\tRead_CSV: Node list successfully generated\nReturning graph\n";
     switch(graph.edges.size()) {
         case 0: {                       std::cerr << "ReadGraph_CSV: No edges.  That's a problem."; exit(1);};
-        case 1 ... 500 : {              graph.graph_size = tiny; break; };
-        case 501 ... 100'000 : {        graph.graph_size = small; break; };
-        case 100'001 ... 30'000'000 : { graph.graph_size = big; break; };
-        default : {                     graph.graph_size = giant; break;}; }
+        case 1 ... 500 : {              graph.graph_size = tiny;    break; };
+        case 501 ... 100'000 : {        graph.graph_size = small;   break; };
+        case 100'001 ... 30'000'000 : { graph.graph_size = big;     break; };
+        default : {                     graph.graph_size = giant;   break; }; }
     return graph; }
 
 std::optional<std::string> WriteGraph_EdgesCSV(const Graph& g, const std::string& file_name, const std::uint8_t& base) { std::cout << "\tCalled WriteGraph_EdgesCSV\n"; 

@@ -3,7 +3,7 @@
 #include <set>
 #include <string>
 #include <unordered_map>
-#include "AlterHash.hpp"
+#include "GenAlters.hpp"
 #include "CliqueFind.hpp"
 #include "CSV.hpp"
 #include "Degree.hpp"
@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
     std::cout << "Calling Alter hash \n";
     if(!(graph.graph_size == giant)) {
     const Altermap              altermap            (GenAllAlters(graph));
-
+/*
     std::cout << "Calling PrestigeSimple_all\n";
     const auto&               prestige_simple_all   (PrestigeSimple(altermap, simple_degree));
 
@@ -44,6 +44,6 @@ int main(int argc, char* argv[]) {
     const auto&                prestige_simple_out  (PrestigeSimple(altermap, out_degree));
 
     std::cout << "Calling PrestigeSimple_in\n";
-    const auto&                prestige_simple_in   (PrestigeSimple(altermap, in_degree));
+    const auto&                prestige_simple_in   (PrestigeSimple(altermap, in_degree)); */
     }
     return 0; }
