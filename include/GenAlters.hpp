@@ -6,7 +6,6 @@
 #include <map>
 #include "Types.hpp"
 #include "GenNodelist.hpp"
-
 Altermap GenAllAlters(const Graph& g) {
     std::cout << "\tBegan GenAllAlters\n";
     Altermap        altermap;
@@ -18,7 +17,7 @@ Altermap GenAllAlters(const Graph& g) {
         altermap[node] = SquishNodelist(alters); });
     std::cout << "\tFinished Altermap\n";
     return altermap; }
-
+    
 Altermap GenAlters(const Graph& g, const Node& node) {
     std::cout << "\tBegan GenAlters\n";
     Altermap altermap;

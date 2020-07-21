@@ -6,8 +6,7 @@
 #include <memory>
 #include <set>
 #include <unordered_map>
-#include <vector>
-#include "CliqueFind.hpp"
+#include "GenCliques.hpp"
 #include "Degree.hpp"
 #include "Types.hpp"
 /*

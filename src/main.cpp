@@ -4,7 +4,7 @@
 #include <string>
 #include <unordered_map>
 #include "GenAlters.hpp"
-#include "CliqueFind.hpp"
+#include "GenCliques.hpp"
 #include "CSV.hpp"
 #include "Degree.hpp"
 #include "PrestigeSimple.hpp"
@@ -17,25 +17,32 @@ int main(int argc, char* argv[]) {
 
     std::cout << "Main: File: " << file_name << "\n"; std::cout << "Main: argc: " << argc << "\n";
     
-    const Graph               graph                 (ReadGraph_CSV( file_name, skip_lines, base_read));
+    const Graph&               graph                 (ReadGraph_CSV( file_name, skip_lines, base_read));
     std::cout << "Graph edges: " << graph.edges.size() << "\n"; std::cout << "Graph nodes: " << graph.nodes.size() << "\n";
     std::string               write_file_name       (file_name);
 
     // const auto&                 write_err       (WriteGraph_CSV(graph, write_file_name, base_write));
 
     std::cout << "Calling Simple degree \n";
-    const Attribute           simple_degree         (Degree(graph, both));
+    const Attribute&          simple_degree         (Degree(graph, both));
+    // for(const auto& degree : simple_degree) {
+    //    std::cout << "Node: " << degree.first << " Simple Degree: " << degree.second << "\n"; }
 
     std::cout << "Calling out degree \n";
-    const Attribute            out_degree           (Degree(graph, out));
-
+    const Attribute&          out_degree           (Degree(graph, out));
+    // for(const auto& degree : out_degree) {
+    //    std::cout << "Node: " << degree.first << " Out Degree: " << degree.second << "\n"; }
 
     std::cout << "Calling in degree \n";
-    const Attribute            in_degree            (Degree(graph, in));
+    const Attribute&          in_degree            (Degree(graph, in));
+    // for(const auto& degree : in_degree) {
+    //    std::cout << "Node: " << degree.first << " In Degree: " << degree.second << "\n"; }
 
     std::cout << "Calling Alter hash \n";
-    if(!(graph.graph_size == giant)) {
-    const Altermap              altermap            (GenAllAlters(graph));
+    if(graph.graph_size != giant) {
+    const Altermap&           altermap             (GenAllAlters(graph));
+    // const auto&                 cliques             (GenCliques(altermap));
+    // const auto
 /*
     std::cout << "Calling PrestigeSimple_all\n";
     const auto&               prestige_simple_all   (PrestigeSimple(altermap, simple_degree));

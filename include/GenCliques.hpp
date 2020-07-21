@@ -5,7 +5,6 @@
 #include <set>
 #include "GenAlters.hpp"
 #include "Types.hpp"
-#include "Degree.hpp"
 std::set<Nodelist> GenCliques(Altermap altermap) {
     std::set<Nodelist>  cliques;
     std::for_each(std::execution::par_unseq, cRANGE(altermap),              [&cliques, &altermap](const auto& node_alter) {

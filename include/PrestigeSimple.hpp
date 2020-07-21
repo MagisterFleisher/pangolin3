@@ -18,8 +18,7 @@ Eigenvalue centrality: also prestige but more complicated
  * for each node,
  *    the node's prestige = sum of it's alters' degree centrality
  */
- /* 
-Attribute PrestigeSimple(Altermap alters_map, Attribute degree) {
+/* Attribute PrestigeSimple(Altermap alters_map, Attribute degree) {
     std::cout << "\tCalled PrestigeSimple\n";
     Attribute                   prestige_map    {};
     for(const auto& alter_map : alters_map) {
