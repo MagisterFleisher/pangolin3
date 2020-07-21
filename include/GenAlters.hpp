@@ -10,9 +10,9 @@
 Altermap GenAllAlters(const Graph& g) {
     std::cout << "\tBegan GenAllAlters\n";
     Altermap        altermap;
-    std::for_each(std::execution::seq, RANGE(g.nodes), [&altermap, g](const auto& node) {
+    std::for_each(std::execution::unseq, RANGE(g.nodes), [&altermap, g](const auto& node) {
         Nodelist    alters;
-        std::for_each(std::execution::seq, RANGE(g.edges), [&alters, node](const auto& edge) {
+        std::for_each(std::execution::unseq, RANGE(g.edges), [&alters, node](const auto& edge) {
             if(node == edge.from) {         alters.emplace_back(edge.to); 
             } else if(node == edge.to) {    alters.emplace_back(edge.from); } });
         altermap[node] = SquishNodelist(alters); });
