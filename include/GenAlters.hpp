@@ -6,18 +6,34 @@
 #include <map>
 #include "Types.hpp"
 #include "GenNodelist.hpp"
+
 Altermap GenAllAlters(const Graph& g) {
     std::cout << "\tBegan GenAllAlters\n";
     Altermap        altermap;
-    std::for_each(std::execution::unseq, RANGE(g.nodes), [&altermap, g](const auto& node) {
-        Nodelist    alters;
-        std::for_each(std::execution::unseq, RANGE(g.edges), [&alters, node](const auto& edge) {
-            if(node == edge.from) {         alters.emplace_back(edge.to); 
-            } else if(node == edge.to) {    alters.emplace_back(edge.from); } });
-        altermap[node] = SquishNodelist(alters); });
+    std::cout << "\tBeginning gen loop 1\n";
+
+    std::for_each(std::execution::unseq, cRANGE(g.edges), [&altermap](const auto& edge) {
+        Nodelist raw_from (altermap[edge.from]);
+        raw_from.emplace_back(edge.to);
+        altermap[edge.from] = raw_from; });
+    
+    std::cout << "\tBeginning Squish loop 1\n";
+    std::for_each(std::execution::par_unseq, cRANGE(altermap), [&altermap](auto node_alter) {
+        altermap[node_alter.first] = SquishNodelist(node_alter.second); });
+
+    std::cout << "\tBeginning gen loop 2\n";
+    std::for_each(std::execution::unseq, cRANGE(g.edges), [&altermap](const auto& edge) {
+        Nodelist raw_to (altermap[edge.to]);
+        raw_to.emplace_back(edge.from);
+        altermap[edge.to] = raw_to; });
+
+    std::cout << "\tBeginning Squish loop2\n";
+    std::for_each(std::execution::par_unseq, cRANGE(altermap), [&altermap](auto node_alter) {
+        altermap[node_alter.first] = SquishNodelist(node_alter.second); });
+    
     std::cout << "\tFinished Altermap\n";
     return altermap; }
-    
+
 Altermap GenAlters(const Graph& g, const Node& node) {
     std::cout << "\tBegan GenAlters\n";
     Altermap altermap;

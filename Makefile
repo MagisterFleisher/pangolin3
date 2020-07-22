@@ -1,10 +1,10 @@
 APP := 				pangolin0.3.2.17
 CXX := 				g++-10
-#  CXX := 				clang++-10
+# CXX := 			clang++-10
 BUILDDIR +=			build/
 CXXFLAGS += 		$(CXXSTDFLAGS) $(CXXOPTFLAGS) $(CXXLIBFLAGS) $(CXXMACROFLAGS) $(CXXDEBUGFLAGS) $(LINKDIR)
 CXXSTDFLAGS +=		-std=c++17
-CXXOPTFLAGS +=		-Ofast -march=native #3 -fpermissive
+CXXOPTFLAGS +=		-Ofast -march=native # -fprofile-use #3 -fpermissive
 CXXLIBFLAGS +=		-lstdc++ -ltbb -pthread -lpthread -fopenmp
 CXXMACROFLAGS +=	-D_GLIBCXX_PARALLEL
 CXXDEBUGFLAGS +=	-Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wnull-dereference -Wdouble-promotion -Wformat=2 -Wduplicated-cond -Wduplicated-branches -Wuseless-cast -Wconversion -Wpessimizing-move -Wredundant-move -Wunused -Wsign-conversion # -Wpedantic 

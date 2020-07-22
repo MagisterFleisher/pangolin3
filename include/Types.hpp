@@ -6,7 +6,7 @@
 #include <set>
 #include <map>
 #include <unordered_map>
-#include <folly/FBVector.h>
+// #include <folly/FBVector.h>
 
 #define RANGE(x)    x.begin(),  x.end()
 #define cRANGE(x)   x.cbegin(), x.cend()
@@ -16,17 +16,17 @@ enum GraphSize { giant, big, small, tiny };
 
 using ID            = std::uint_fast64_t;
 using Node          = ID;
-using Nodelist      = folly::fbvector<Node>;
-// using Nodelist      = std::vector<Node>;
+// using Nodelist      = folly::fbvector<Node>;
+using Nodelist      = std::vector<Node>;
 typedef struct {
     ID id; 
     Node from;
     Node to;        } Edge;
-using Edgelist      = folly::fbvector<Edge>;
-// using Edgelist      = std::vector<Edge>;
+// using Edgelist      = folly::fbvector<Edge>;
+using Edgelist      = std::vector<Edge>;
 using Altermap      = std::map<Node, Nodelist>; /* In lieu of an adjacency list*/
-using Path          = folly::fbvector<Edge>;
-// using Path          = std::vector<Edge>;
+// using Path          = folly::fbvector<Edge>;
+using Path          = std::vector<Edge>;
 // using Altermap      = std::map<Node, Nodelist>;
 using Attribute     = std::unordered_map<Node, std::uint64_t>;
 
