@@ -28,16 +28,12 @@ int main(int argc, char* argv[]) {
     // const std::uint8_t&          base_write      (static_cast<std::uint8_t> (std::stoi(argv[4], nullptr, 10)) );
 
     std::cout << "Main: File: " << file_name << "\n"; std::cout << "Main: argc: " << argc << "\n";
-    
-    const auto startTime (high_resolution_clock::now());
-    const Graph&               graph                (ReadGraph_CSV( file_name, skip_lines, base_read));
-    const auto endTime (high_resolution_clock::now());
-    print_results("ReadGraph_CSV", startTime, endTime);
 
+    Graph               graph                (ReadGraph_CSV( file_name, skip_lines, base_read));
+    
     std::cout << "\nGraph edges: " << graph.edges.size() << "\n"; std::cout << "Graph nodes: " << graph.nodes.size() << "\n";
 
-    std::string               write_file_name       (file_name);
-
+//    std::string               write_file_name       (file_name);
     // const auto&               write_err             (WriteGraph_CSV(graph, write_file_name, base_write));
 
     std::cout << "\nCalling Simple degree \n";
@@ -46,25 +42,17 @@ int main(int argc, char* argv[]) {
     const auto endTime1 (high_resolution_clock::now());
     print_results("Degree(graph, both)", startTime1, endTime1);
     
-    // for(const auto& degree : simple_degree) {
-    //    std::cout << "Node: " << degree.first << " Simple Degree: " << degree.second << "\n"; }
-
     std::cout << "\nCalling out degree\n";
     const auto startTime2 (high_resolution_clock::now());
     const Attribute&          out_degree           (Degree(graph, out));
     const auto endTime2 (high_resolution_clock::now());
     print_results("Degree(graph, out)", startTime2, endTime2);
     
-    // for(const auto& degree : out_degree) {
-    //    std::cout << "Node: " << degree.first << " Out Degree: " << degree.second << "\n"; }
-
     std::cout << "\nCalling in degree\n";
     const auto startTime3 (high_resolution_clock::now());
     const Attribute&          in_degree            (Degree(graph, in));
     const auto endTime3 (high_resolution_clock::now());
     print_results("Degree(graph, in)", startTime3, endTime3);
-    // for(const auto& degree : in_degree) {
-    //    std::cout << "Node: " << degree.first << " In Degree: " << degree.second << "\n"; }
 
     std::cout << "\nCalling GenAllAlter\n";
     if(graph.graph_size != giant) {
@@ -73,19 +61,31 @@ int main(int argc, char* argv[]) {
     const auto endTime4 (high_resolution_clock::now());
     print_results("GenAllAlters(graph)", startTime4, endTime4);
 
-    const auto startTime5 (high_resolution_clock::now());
-    const auto&                 cliques             (GenCliques(altermap));
-    const auto endTime5 (high_resolution_clock::now());
+    std::cout << "\nCalling GenCliques\n";
+    std::cout << "This may take a while..." << "\n";
+    const auto& startTime5 (high_resolution_clock::now());
+    const auto& cliques             (GenCliques(altermap));
+    const auto& endTime5 (high_resolution_clock::now());
     print_results("GenCliques(altermap)", startTime5, endTime5);
 
+
+    std::cout << "Calling PrestigeSimple simple_degree\n";
+    const auto& startTime6 (high_resolution_clock::now());
+    const auto& prestige_simple_all (PrestigeSimple(altermap, simple_degree));
+    const auto& endTime6 (high_resolution_clock::now());
+    print_results("PrestigeSimple(altermap, simple_degree)", startTime6, endTime6);
+
 /*
-    std::cout << "Calling PrestigeSimple_all\n";
-    const auto&               prestige_simple_all   (PrestigeSimple(altermap, simple_degree));
+    std::cout << "Calling PrestigeSimple_all out_degree\n";
+    const auto& startTime7 (high_resolution_clock::now());
+    const auto& prestige_simple_out   (PrestigeSimple(altermap, out_degree));
+    const auto& endTime7 (high_resolution_clock::now());
+    print_results("PrestigeSimple(altermap, out_degree)", startTime7, endTime7);
 
-    std::cout << "Calling PrestigeSimple_out\n";
-    const auto&                prestige_simple_out  (PrestigeSimple(altermap, out_degree));
-
-    std::cout << "Calling PrestigeSimple_in\n";
-    const auto&                prestige_simple_in   (PrestigeSimple(altermap, in_degree)); */
+    std::cout << "Calling PrestigeSimple_all in_degree\n";
+    const auto& startTime8 (high_resolution_clock::now());
+    const auto& prestige_simple_in   (PrestigeSimple(altermap, in_degree));
+    const auto& endTime8 (high_resolution_clock::now());
+    print_results("PrestigeSimple(altermap, in_degree)", startTime8, endTime8); */
     }
     return 0; }

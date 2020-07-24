@@ -28,7 +28,7 @@ using Altermap      = std::map<Node, Nodelist>; /* In lieu of an adjacency list*
 // using Path          = folly::fbvector<Edge>;
 using Path          = std::vector<Edge>;
 // using Altermap      = std::map<Node, Nodelist>;
-using Attribute     = std::unordered_map<Node, std::uint64_t>;
+using Attribute     = std::unordered_map<Node, std::uint_fast64_t>;
 
 typedef struct {
     GraphSize graph_size;

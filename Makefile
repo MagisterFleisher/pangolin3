@@ -1,4 +1,4 @@
-APP := 				pangolin0.3.2.17
+APP := 				pangolin0.3.3.17
 CXX := 				g++-10
 # CXX := 			clang++-10
 BUILDDIR +=			build/
