@@ -68,20 +68,18 @@ int main(int argc, char* argv[]) {
     const auto& endTime5 (high_resolution_clock::now());
     print_results("GenCliques(altermap)", startTime5, endTime5);
 
-
     std::cout << "Calling PrestigeSimple simple_degree\n";
     const auto& startTime6 (high_resolution_clock::now());
     const auto& prestige_simple_all (PrestigeSimple(altermap, simple_degree));
     const auto& endTime6 (high_resolution_clock::now());
     print_results("PrestigeSimple(altermap, simple_degree)", startTime6, endTime6);
 
-/*
     std::cout << "Calling PrestigeSimple_all out_degree\n";
     const auto& startTime7 (high_resolution_clock::now());
     const auto& prestige_simple_out   (PrestigeSimple(altermap, out_degree));
     const auto& endTime7 (high_resolution_clock::now());
     print_results("PrestigeSimple(altermap, out_degree)", startTime7, endTime7);
-
+/*
     std::cout << "Calling PrestigeSimple_all in_degree\n";
     const auto& startTime8 (high_resolution_clock::now());
     const auto& prestige_simple_in   (PrestigeSimple(altermap, in_degree));
