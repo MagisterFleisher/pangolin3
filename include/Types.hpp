@@ -29,10 +29,11 @@ using Altermap      =   std::map<Node, Nodelist>; /* In lieu of an adjacency lis
 using Path          =   std::vector<Edge>;
 using Attribute     =   std::unordered_map<Node, Integer>;
 typedef struct {
-    GraphSize graph_size;
-    Directionality directionaltiy (directed);
-    Edgelist edges;
-    Nodelist nodes; }   Graph;
+    GraphSize           graph_size;
+    Directionality      directionality = directed;
+    Edgelist            edges;
+    Nodelist            nodes; 
+                    }   Graph;
 typedef struct {
     Node                node;
     std::uint_fast64_t  DegreeBoth;

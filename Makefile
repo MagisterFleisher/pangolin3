@@ -11,8 +11,8 @@ CXXDEBUGFLAGS +=	-Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wca
 SRCDIR += 			src/
 INCLUDEDIR += 		include/
 LINKDIR += 			-L/usr/include/ -Iinclude/ -L/usr/include/c++/10/
-ALLFILES +=			$(SRCDIR)main.cpp $(INCLUDEDIR)Types.hpp 	$(INCLUDEDIR)CheckFile.hpp	$(INCLUDEDIR)CSV.hpp 	$(INCLUDEDIR)GenNodelist.hpp	$(INCLUDEDIR)GenAlters.hpp	$(INCLUDEDIR)Degree.hpp	$(INCLUDEDIR)TriadGen.hpp	$(INCLUDEDIR)GenCliques.hpp $(INCLUDEDIR)PrestigeSimple.hpp
-ALLFILESO +=		$(BUILDDIR)main.o $(BUILDDIR)Types.o 		$(BUILDDIR)CheckFile.o 		$(BUILDDIR)CSV.o 		$(BUILDDIR)GenNodelist.o		$(BUILDDIR)GenAlters.o		$(BUILDDIR)Degree.o		$(BUILDDIR)TriadGen.o		$(BUILDDIR)GenCliques.o		$(BUILDDIR)PrestigeSimple.o
+ALLFILES +=			$(SRCDIR)main.cpp $(INCLUDEDIR)Types.hpp 	$(INCLUDEDIR)CheckFile.hpp	$(INCLUDEDIR)CSV.hpp 	$(INCLUDEDIR)GenNodelist.hpp	$(INCLUDEDIR)GenAlters.hpp	$(INCLUDEDIR)Degree.hpp	$(INCLUDEDIR)TriadGen.hpp	$(INCLUDEDIR)GenCliques.hpp $(INCLUDEDIR)PrestigeSimple.hpp	$(INCLUDEDIR)SimplifyGraph.hpp
+ALLFILESO +=		$(BUILDDIR)main.o $(BUILDDIR)Types.o 		$(BUILDDIR)CheckFile.o 		$(BUILDDIR)CSV.o 		$(BUILDDIR)GenNodelist.o		$(BUILDDIR)GenAlters.o		$(BUILDDIR)Degree.o		$(BUILDDIR)TriadGen.o		$(BUILDDIR)GenCliques.o		$(BUILDDIR)PrestigeSimple.o		$(BUILDDIR)Types.o
 
 $(APP): $(ALLFILESO)
 	$(CXX) $(CXXFLAGS) $(BUILDDIR)main.o -o $(APP)
@@ -46,3 +46,6 @@ $(BUILDDIR)TriadGen.o: $(INCLUDEDIR)TriadGen.hpp $(INCLUDEDIR)Types.hpp
 
 $(BUILDDIR)PrestigeSimple.o: $(INCLUDEDIR)PrestigeSimple.hpp $(INCLUDEDIR)Types.hpp
 	$(CXX) $(CXXFLAGS) -c $(INCLUDEDIR)PrestigeSimple.hpp -o $(BUILDDIR)PrestigeSimple.o
+
+$(BUILDDIR)SimplifyGraph.o: $(INCLUDEDIR)SimplifyGraph.hpp $(INCLUDEDIR)Types.hpp
+	$(CXX) $(CXXFLAGS) -c $(INCLUDEDIR)SimplifyGraph.hpp -o $(BUILDDIR)SimplifyGraph.o

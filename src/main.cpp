@@ -9,6 +9,7 @@
 #include "CSV.hpp"
 #include "Degree.hpp"
 #include "PrestigeSimple.hpp"
+#include "SimplifyGraph.hpp"
 #include <chrono>
 #include <random>
 #include <ratio>
@@ -55,8 +56,10 @@ int main(int argc, char* argv[]) {
     const std::uint8_t&                    base_read                (static_cast<std::uint8_t> (std::stoi(argv[3], nullptr, 10)) );
     // const std::uint8_t&                  base_write             (static_cast<std::uint8_t> (std::stoi(argv[4], nullptr, 10)) );
     std::cout << "Main: File: " << file_name << "\n"; std::cout << "Main: argc: " << argc << "\n";
-    Graph                                  graph                    (ReadGraph_CSV( file_name, skip_lines, base_read));
-    std::cout << "\nGraph edges: " << graph.edges.size() << "\n"; std::cout << "Graph nodes: " << graph.nodes.size() << "\n";
+    Graph                                  raw_graph                    (ReadGraph_CSV( file_name, skip_lines, base_read));
+    std::cout << "\nGraph edges: " << raw_graph.edges.size() << "\n"; std::cout << "Graph nodes: " << raw_graph.nodes.size() << "\n";
+    Graph                                  graph                    (SimplifyGraph(raw_graph, undirected));
+    std::cout << "\nSimplified Graph edges: " << graph.edges.size() << "\n"; std::cout << "nSimplified Graph nodes: " << graph.nodes.size() << "\n";
     // std::string                          write_file_name        (file_name);
     // const auto&                          write_err              (WriteGraph_CSV(graph, write_file_name, base_write));
     std::cout << "\nCalling GenAllAlter\n";
