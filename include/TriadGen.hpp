@@ -16,7 +16,7 @@
  */
 std::set<std::set<Node>> TriadGen(const Altermap& alter_map) { 
     std::set<std::set<Node>> blank;
-    return blank;}
+    return blank; }
 #endif // PANGOLIN_TRIADGEN_HPP
 
     /*std::set<std::set<Node>>        triad_set;

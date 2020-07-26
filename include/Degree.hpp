@@ -20,6 +20,7 @@ Attribute DegreeFrom(const Edgelist& edges, Attribute freq_map) {
  */
 Attribute Degree(const Graph& g, Direction direction) {
     Attribute freq_map {};
+    std::for_each(std::execution::unseq, cRANGE(g.nodes), [&freq_map](const auto& node){ freq_map[node] += 0; });
     switch(direction) {
         case in:    {
             std::for_each(std::execution::unseq, cRANGE(g.edges), [&freq_map](const auto& edge){ freq_map[edge.to] += 1; });
