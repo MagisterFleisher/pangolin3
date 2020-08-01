@@ -15,9 +15,9 @@
 Edge ParseLine(const std::string& line, const std::uint8_t& base) {
     Edge edge;
     switch(base) {
-        case 8:     { std::sscanf(line.c_str(), "%lo,%lo,%lo", &edge.id, &edge.from, &edge.to); break; };
-        case 10:    { std::sscanf(line.c_str(), "%lu,%lu,%lu", &edge.id, &edge.from, &edge.to); break; };
-        case 16:    { std::sscanf(line.c_str(), "%lx,%lx,%lx", &edge.id, &edge.from, &edge.to); break; };
+        case 8:     { std::sscanf(line.c_str(), "%llo,%llo,%llo", &edge.id, &edge.from, &edge.to); break; };
+        case 10:    { std::sscanf(line.c_str(), "%llu,%llu,%llu", &edge.id, &edge.from, &edge.to); break; };
+        case 16:    { std::sscanf(line.c_str(), "%llx,%llx,%llx", &edge.id, &edge.from, &edge.to); break; };
         default:    { std::cerr << "Problem reading base of csv.\n"; break; } }
     return edge; }
 
